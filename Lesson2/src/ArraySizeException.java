@@ -6,8 +6,6 @@
 public class ArraySizeException extends Exception {
 
     public ArraySizeException(String message) {
-        System.err.println(message);
+        super(message);
     }
-
-
 }

@@ -50,39 +50,38 @@ public class Lesson2 {
                 {"12", "13", "14", "15"}};
 
         try {
-            System.out.println("Result: " + calculate(wrongArray2));
+            System.out.println("Result: " + calculate(strArray));
         } catch (ArraySizeException | ArrayDataException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 
     private static int calculate(String[][] strArray) throws ArraySizeException, ArrayDataException {
 
         int result = 0;
-        int rowIndex = 0;
-        int columnIndex = 0;
 
         if (strArray.length != SIZE){
-            throw new ArraySizeException("Wrong number of rows in array");
 
+            throw new ArraySizeException("Wrong number of rows in array");
         } else {
 
-            for (String[] row: strArray) {
-                if (row.length != SIZE) {
+            for (int rowIndex = 0; rowIndex < strArray.length; rowIndex++) {
+
+                if (strArray[rowIndex].length != SIZE) {
+
                     throw new ArraySizeException("Wrong number of columns in array");
                 } else {
-                    rowIndex++;
 
-                    for (String str: row) {
+                    for (int columnIndex = 0; columnIndex < strArray[rowIndex].length; columnIndex++) {
+
                         try {
-                            columnIndex++;
-                            result += Integer.valueOf(str);
+                            result += Integer.valueOf(strArray[rowIndex][columnIndex]);
                         } catch (NumberFormatException e) {
-                            throw new ArrayDataException(str, rowIndex, columnIndex);
+
+                            throw new ArrayDataException(strArray[rowIndex][columnIndex], rowIndex, columnIndex);
                         }
                     }
                 }
-                columnIndex = 0;
             }
         }
         return result;
