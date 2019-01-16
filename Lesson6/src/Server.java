@@ -22,8 +22,8 @@ public class Server {
             Scanner scanner = new Scanner(client.getInputStream());
             PrintWriter printWriter = new PrintWriter(client.getOutputStream());
 
-            Thread readerThread = new Thread(new ServerMessageHandler(printWriter));
-            readerThread.start();
+            Thread messageHandler = new Thread(new ServerMessageHandler(printWriter));
+            messageHandler.start();
 
             while (true) {
                 String message = scanner.nextLine();
